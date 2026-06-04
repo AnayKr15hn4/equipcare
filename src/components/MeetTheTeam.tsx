@@ -99,7 +99,9 @@ const MeetTheTeam: React.FC = () => {
 
     let cards: HTMLElement[] = [];
     const updateCache = () => {
-      cards = Array.from(section.querySelectorAll(".team-card")) as HTMLElement[];
+      cards = Array.from(
+        section.querySelectorAll(".team-card"),
+      ) as HTMLElement[];
     };
     updateCache();
 
@@ -109,20 +111,20 @@ const MeetTheTeam: React.FC = () => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
       cards.forEach((card) => {
         const rect = card.getBoundingClientRect();
-        
+
         const closestX = Math.max(rect.left, Math.min(e.clientX, rect.right));
         const closestY = Math.max(rect.top, Math.min(e.clientY, rect.bottom));
-        
+
         const dx = e.clientX - closestX;
         const dy = e.clientY - closestY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         const maxDistance = 300;
         const opacity = distance < maxDistance ? 1 : 0;
-        
+
         const mx = e.clientX - rect.left;
         const my = e.clientY - rect.top;
-        
+
         card.style.setProperty("--mouse-x", `${mx}px`);
         card.style.setProperty("--mouse-y", `${my}px`);
         card.style.setProperty("--spotlight-opacity", opacity.toFixed(3));
@@ -141,7 +143,7 @@ const MeetTheTeam: React.FC = () => {
 
   useEffect(() => {
     if (isHovered) return;
-    const interval = setInterval(nextSlide, 7000);
+    const interval = setInterval(nextSlide, 12000);
     return () => clearInterval(interval);
   }, [isHovered, nextSlide]);
 

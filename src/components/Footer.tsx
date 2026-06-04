@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Mail,
-  Phone,
-  MapPin,
 } from "lucide-react";
 import "./Footer.css";
 
@@ -223,14 +221,6 @@ const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                 >
                   equipcaresocials@gmail.com
                 </a>
-              </li>
-              <li>
-                <Phone size={16} />
-                <a href="tel:+15551234567">+1 (555) 123-4567</a>
-              </li>
-              <li>
-                <MapPin size={16} />
-                <span>123 Health Ave, Suite 400<br />Washington, DC 20001</span>
               </li>
             </ul>
           </div>
