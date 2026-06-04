@@ -58,30 +58,25 @@
   align-items: center;
   justify-content: center;
 
-  width: clamp(80px, 12vw, 120px);
-  height: clamp(50px, 8vw, 75px);
+  width: 1.3em;
+  height: 0.76em;
 
   background-color: var(--color-navy);
-  border-radius: 8px;
+  border-radius: clamp(4px, 1vw, 8px);
 
   vertical-align: middle;
-
   margin: 0 15px;
 
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
 
-  background-image: linear-gradient(
-    45deg,
-    #102A43 25%,
-    #153250 25%,
-    #153250 50%,
-    #102A43 50%,
-    #102A43 75%,
-    #153250 75%,
-    #153250 100%
-  );
-  background-size: 15px 15px;
+.inline-media:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(43, 181, 158, 0.4);
 }
 
 .unmute-badge {
@@ -89,15 +84,27 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: white;
   font-size: 0.7rem;
   font-family: var(--font-body);
   font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 4px;
-  letter-spacing: normal;
-  text-transform: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.inline-media:hover .unmute-badge {
+  background-color: var(--color-teal);
+  color: var(--color-navy);
 }
 
 .hero-inline-image {
@@ -105,4 +112,51 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.inline-media:hover .hero-inline-image {
+  transform: scale(1.08);
+}
+
+/* Sound wave animation */
+.sound-wave-container {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+}
+
+.sound-wave-container .bar {
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-navy);
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+/* When not hovered, the bar is white since the badge is dark */
+.inline-media:not(:hover) .sound-wave-container .bar {
+  background-color: white;
+}
+
+.sound-wave-container .bar:nth-child(2) {
+  animation-delay: 0.15s;
+  animation-duration: 0.6s;
+}
+
+.sound-wave-container .bar:nth-child(3) {
+  animation-delay: 0.3s;
+  animation-duration: 0.7s;
+}
+
+@keyframes soundWave {
+  0% {
+    transform: scaleY(0.2);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
