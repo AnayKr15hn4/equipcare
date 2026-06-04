@@ -19,10 +19,8 @@ const AboutUs: React.FC = () => {
             <p className="about-description">
               EquipCare Foundation is a non-profit organization dedicated to
               redistributing quality medical equipment to under-resourced
-              healthcare facilities worldwide. Since our founding, we've
-              delivered over 12,000 pieces of equipment to 35+ countries,
-              empowering communities with the tools they need for better health
-              outcomes.
+              healthcare facilities worldwide, empowering communities with the
+              tools they need for better health outcomes.
             </p>
           </div>
 
