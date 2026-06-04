@@ -150,38 +150,3 @@
     transform: scaleY(1);
   }
 }
-
-/* Actions and Socials container next to Donate Now button */
-.hero-actions-container {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.hero-socials-list {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.hero-social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--color-text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hero-social-link:hover {
-  color: var(--color-teal);
-  background-color: rgba(43, 181, 158, 0.1);
-  border-color: var(--color-teal);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(43, 181, 158, 0.25);
-}
