@@ -94,9 +94,9 @@
 }
 
 /* ═══════════════════════════════════════════
-   MOBILE  — max-width: 768px
+   MOBILE  — max-width: 1140px
    ═══════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 1140px) {
   .navbar {
     padding: 1rem 1.5rem;
   }
