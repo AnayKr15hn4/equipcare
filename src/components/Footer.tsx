@@ -3,13 +3,78 @@ import {
   Mail,
   Phone,
   MapPin,
-  Globe,
-  MessageCircle,
-  Heart,
-  Link,
-  Share2,
 } from "lucide-react";
 import "./Footer.css";
+
+// Defining inline icons to avoid dependency compatibility issues
+const YoutubeIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17z" />
+    <polygon points="10 15 15 12 10 9" />
+  </svg>
+);
+
+const InstagramIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
+
+const LinkedinIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const TiktokIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 interface FooterProps {
   onViewChange: (view: "home" | "apply") => void;
@@ -45,20 +110,49 @@ const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
               accessible.
             </p>
             <div className="footer-socials">
-              <a href="#" className="footer-social-link" aria-label="Facebook">
-                <Globe size={18} />
+              <a
+                href="#"
+                className="footer-social-link"
+                aria-label="YouTube"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("This YouTube channel is not yet linked.");
+                }}
+              >
+                <YoutubeIcon size={18} />
               </a>
-              <a href="#" className="footer-social-link" aria-label="Twitter">
-                <MessageCircle size={18} />
+              <a
+                href="#"
+                className="footer-social-link"
+                aria-label="Instagram"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("This Instagram account is not yet linked.");
+                }}
+              >
+                <InstagramIcon size={18} />
               </a>
-              <a href="#" className="footer-social-link" aria-label="Instagram">
-                <Heart size={18} />
+              <a
+                href="#"
+                className="footer-social-link"
+                aria-label="LinkedIn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("This LinkedIn page is not yet linked.");
+                }}
+              >
+                <LinkedinIcon size={18} />
               </a>
-              <a href="#" className="footer-social-link" aria-label="LinkedIn">
-                <Link size={18} />
-              </a>
-              <a href="#" className="footer-social-link" aria-label="YouTube">
-                <Share2 size={18} />
+              <a
+                href="#"
+                className="footer-social-link"
+                aria-label="TikTok"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("This TikTok account is not yet linked.");
+                }}
+              >
+                <TiktokIcon size={18} />
               </a>
             </div>
           </div>
@@ -111,8 +205,6 @@ const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
                   Join Our Team
                 </a>
               </li>
-              <li><a href="#">Partner With Us</a></li>
-              <li><a href="#">Fundraise</a></li>
             </ul>
           </div>
 
@@ -122,7 +214,15 @@ const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             <ul className="footer-contact-list">
               <li>
                 <Mail size={16} />
-                <a href="mailto:info@equipcare.org">info@equipcare.org</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert("This email is not yet linked.");
+                  }}
+                >
+                  equipcaresocials@gmail.com
+                </a>
               </li>
               <li>
                 <Phone size={16} />

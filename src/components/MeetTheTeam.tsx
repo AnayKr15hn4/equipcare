@@ -228,14 +228,22 @@ const MeetTheTeam: React.FC = () => {
 
                       <div className="team-socials">
                         <a
-                          href={member.linkedin}
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            alert("This LinkedIn profile is not yet linked.");
+                          }}
                           className="team-social-link"
                           aria-label={`${member.name} LinkedIn`}
                         >
                           <Linkedin size={18} />
                         </a>
                         <a
-                          href={member.email}
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            alert("This email is not yet linked.");
+                          }}
                           className="team-social-link"
                           aria-label={`Email ${member.name}`}
                         >
