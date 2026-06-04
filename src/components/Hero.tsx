@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Hero.css";
 
 const Hero: React.FC = () => {
-  const [isUnmuted, setIsUnmuted] = useState(false);
+  const [isUnmuted, setIsUnmuted] = useState(true);
+  const isUnmutedRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const userPausedRef = useRef(false);
 
   useEffect(() => {
     // Create the audio instance with the new local file
@@ -13,17 +13,6 @@ const Hero: React.FC = () => {
     audio.volume = 0.4;
     audioRef.current = audio;
 
-    const handlePlay = () => {
-      setIsUnmuted(true);
-    };
-
-    const handlePause = () => {
-      setIsUnmuted(false);
-    };
-
-    audio.addEventListener("play", handlePlay);
-    audio.addEventListener("pause", handlePause);
-
     // Try playing immediately (might be blocked by browser autoplay policy)
     audio.play().catch((err) => {
       console.log("Autoplay prevented by browser, waiting for user interaction.", err);
@@ -31,7 +20,7 @@ const Hero: React.FC = () => {
 
     // Play as soon as user interacts with the page (if still unmuted)
     const startOnInteraction = () => {
-      if (audio.paused && !userPausedRef.current) {
+      if (audio.paused && isUnmutedRef.current) {
         audio.play().catch((err) => {
           console.log("Play failed on interaction:", err);
         });
@@ -46,8 +35,6 @@ const Hero: React.FC = () => {
     // Cleanup on unmount
     return () => {
       audio.pause();
-      audio.removeEventListener("play", handlePlay);
-      audio.removeEventListener("pause", handlePause);
       window.removeEventListener("click", startOnInteraction);
       window.removeEventListener("keydown", startOnInteraction);
       audioRef.current = null;
@@ -57,13 +44,24 @@ const Hero: React.FC = () => {
   const toggleSound = () => {
     if (!audioRef.current) return;
 
-    if (audioRef.current.paused) {
-      userPausedRef.current = false;
+    // If it's supposed to be playing (isUnmuted is true) but it is actually paused (autoplay blocked),
+    // then the first click should start the audio rather than turning it off.
+    if (isUnmuted && audioRef.current.paused) {
+      audioRef.current.play().catch((err) => {
+        console.error("Audio playback failed:", err);
+      });
+      return;
+    }
+
+    const nextState = !isUnmuted;
+    setIsUnmuted(nextState);
+    isUnmutedRef.current = nextState;
+
+    if (nextState) {
       audioRef.current.play().catch((err) => {
         console.error("Audio playback failed:", err);
       });
     } else {
-      userPausedRef.current = true;
       audioRef.current.pause();
     }
   };
