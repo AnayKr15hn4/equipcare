@@ -10,6 +10,11 @@ const Hero: React.FC = () => {
             <span className="heading-line text-white">
               <span>EQUIP</span>
               <span className="inline-media">
+                <img
+                  src="/peaceful-forest-lake-surrounded-by-misty-trees-reflecting-in-calm-water-serene-nature-scene-tranquility-concept-photo.jpg"
+                  alt="Misty Forest Lake"
+                  className="hero-inline-image"
+                />
                 <span className="unmute-badge">Unmute</span>
               </span>
               <span>CARE</span>
