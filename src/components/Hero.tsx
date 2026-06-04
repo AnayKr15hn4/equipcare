@@ -28,18 +28,18 @@ const Hero: React.FC = () => {
         playAudio();
       }
       window.removeEventListener("click", startOnInteraction);
-      window.removeEventListener("scroll", startOnInteraction);
+      window.removeEventListener("keydown", startOnInteraction);
     };
 
     window.addEventListener("click", startOnInteraction);
-    window.addEventListener("scroll", startOnInteraction);
+    window.addEventListener("keydown", startOnInteraction);
 
     // Cleanup on unmount
     return () => {
       audio.pause();
       audioRef.current = null;
       window.removeEventListener("click", startOnInteraction);
-      window.removeEventListener("scroll", startOnInteraction);
+      window.removeEventListener("keydown", startOnInteraction);
     };
   }, []);
 
