@@ -45,6 +45,16 @@ const Hero: React.FC = () => {
 
   const toggleSound = () => {
     if (!audioRef.current) return;
+
+    // If it's supposed to be playing (isUnmuted is true) but it is actually paused (autoplay blocked),
+    // then the first click should start the audio rather than turning it off.
+    if (isUnmuted && audioRef.current.paused) {
+      audioRef.current.play().catch((err) => {
+        console.error("Audio playback failed:", err);
+      });
+      return;
+    }
+
     const nextState = !isUnmuted;
     setIsUnmuted(nextState);
     isUnmutedRef.current = nextState;
