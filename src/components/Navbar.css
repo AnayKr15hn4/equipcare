@@ -1,0 +1,184 @@
+/* ─── Navbar ─── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 10%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(10, 18, 26, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  max-width: none;
+}
+
+/* ─── Logo ─── */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  z-index: 110;
+}
+
+.logo-text-bold {
+  font-weight: 700;
+  color: var(--color-text-main);
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+}
+
+.logo-divider {
+  color: var(--color-text-muted);
+  font-weight: 300;
+}
+
+.logo-text-light {
+  font-weight: 400;
+  color: var(--color-text-main);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+}
+
+/* ─── Desktop menu wrapper ─── */
+.navbar-menu {
+  display: contents;
+}
+
+/* ─── Links (absolutely centered on desktop) ─── */
+.navbar-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.navbar-links li a {
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: var(--color-text-main);
+}
+
+/* ─── Action buttons ─── */
+.navbar-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ─── Hamburger toggle (hidden on desktop) ─── */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 0.25rem;
+  z-index: 110;
+}
+
+/* ─── Overlay (hidden on desktop) ─── */
+.navbar-overlay {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE  — max-width: 768px
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  /* Show hamburger */
+  .navbar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overlay */
+  .navbar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    animation: fadeIn 0.25s ease;
+  }
+
+  /* Menu drawer */
+  .navbar-menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 5rem 2rem 2rem;
+    background-color: rgba(10, 18, 26, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 105;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* When open */
+  .navbar--open .navbar-menu {
+    transform: translateX(0);
+  }
+
+  /* Stack links vertically */
+  .navbar-links {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-size: 1.05rem;
+    width: 100%;
+  }
+
+  .navbar-links li a {
+    display: block;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  /* Stack action buttons */
+  .navbar-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .navbar-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

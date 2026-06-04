@@ -1,0 +1,30 @@
+/* Page-level wrapper containing hero + arc */
+.hero-page-wrapper {
+  position: relative;
+  min-height: 130vh;
+  overflow: hidden;
+}
+
+/* Arc SVG — extends from top of the page to below the hero */
+.hero-page-wrapper .hero-arc-svg {
+  position: absolute;
+  top: 0;
+  right: -3%;
+  height: 100%;
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 992px) {
+  .hero-page-wrapper .hero-arc-svg {
+    right: -10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-page-wrapper .hero-arc-svg {
+    opacity: 0.2;
+    right: -15%;
+  }
+}

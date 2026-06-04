@@ -1,0 +1,75 @@
+:root {
+  --color-bg: #0A121A; /* Very dark navy */
+  --color-navy: #153250;
+  --color-teal: #2BB59E;
+  --color-purple: #7C3AED;
+  --color-purple-hover: #6D28D9;
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #A0AEC0;
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Oswald', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Utilities */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-teal {
+  background-color: var(--color-purple);
+  color: #fff;
+}
+
+.btn-teal:hover {
+  background-color: var(--color-purple-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid var(--color-purple);
+}
+
+.btn-outline:hover {
+  background-color: rgba(124, 58, 237, 0.15);
+}
+
+.text-teal {
+  color: var(--color-teal);
+}

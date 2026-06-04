@@ -1,0 +1,326 @@
+/* ─── Team Section ─── */
+.team-section {
+  position: relative;
+  padding: 8rem 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    rgba(21, 50, 80, 0.15) 50%,
+    var(--color-bg) 100%
+  );
+}
+
+/* Header */
+.team-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.team-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+}
+
+.team-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* ─── Carousel Variables ─── */
+.team-section {
+  --slide-width: 480px;
+}
+
+@media (max-width: 1024px) {
+  .team-section {
+    --slide-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-section {
+    --slide-width: 82%;
+  }
+}
+
+/* ─── Carousel Layout ─── */
+.team-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 2.5rem 0;
+}
+
+.carousel-viewport {
+  width: 100%;
+  overflow: visible;
+}
+
+.carousel-track {
+  display: flex;
+  transform: translateX(
+    calc(-1 * var(--current-index) * var(--slide-width) + (100% - var(--slide-width)) / 2)
+  );
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-track.no-transition {
+  transition: none !important;
+}
+
+.carousel-slide {
+  flex: 0 0 var(--slide-width);
+  width: var(--slide-width);
+  padding: 0 1.25rem;
+}
+
+.carousel-slide .team-card {
+  opacity: 0.35;
+  transform: scale(0.86);
+  filter: blur(1.5px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-slide.active .team-card {
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+}
+
+/* ─── Arrow Controls ─── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 18, 26, 0.85);
+  backdrop-filter: blur(12px);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-purple);
+  border-color: var(--color-purple);
+  color: #fff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.5);
+}
+
+.carousel-arrow.left {
+  left: 30px;
+}
+
+.carousel-arrow.right {
+  right: 30px;
+}
+
+/* ─── Dot Indicators ─── */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--color-purple);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}
+
+/* ─── Card ─── */
+.team-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 2.5rem 2rem 2.25rem;
+  background: linear-gradient(
+    160deg,
+    rgba(21, 50, 80, 0.45) 0%,
+    rgba(10, 18, 26, 0.85) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  width: 100%;
+  min-height: 380px;
+}
+
+/* Card magnetic/spotlight glowing edge */
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  background: radial-gradient(
+    160px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(43, 181, 158, 0.65) 0%, /* Teal glow */
+    rgba(124, 58, 237, 0.65) 50%, /* Purple glow */
+    transparent 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: var(--spotlight-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* Header & Identity */
+.team-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.team-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Avatar */
+.team-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+}
+
+.team-avatar-initials {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* Text */
+.team-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0;
+}
+
+.team-bio {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Socials */
+.team-socials {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.team-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+}
+
+.team-social-link:hover {
+  color: var(--color-teal);
+  border-color: var(--color-teal);
+  background: rgba(43, 181, 158, 0.1);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .team-carousel-container {
+    padding: 1rem 0;
+  }
+
+  .carousel-slide {
+    padding: 0 0.5rem;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .carousel-arrow.left {
+    left: 10px;
+  }
+
+  .carousel-arrow.right {
+    right: 10px;
+  }
+
+  .team-card {
+    padding: 2.25rem 1.25rem 2rem;
+    min-height: auto;
+  }
+}

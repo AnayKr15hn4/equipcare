@@ -1,0 +1,102 @@
+/* ─── Join / Apply Section ─── */
+.join-section {
+  position: relative;
+  padding: 6rem 0 8rem;
+  background-color: var(--color-bg);
+}
+
+.join-card {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 3rem;
+  border-radius: 20px;
+  background: linear-gradient(
+    160deg,
+    rgba(21, 50, 80, 0.55) 0%,
+    rgba(10, 18, 26, 0.9) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Decorative blobs */
+.join-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.join-blob--teal {
+  width: 320px;
+  height: 320px;
+  background: var(--color-teal);
+  top: -100px;
+  right: -60px;
+}
+
+.join-blob--purple {
+  width: 260px;
+  height: 260px;
+  background: var(--color-purple);
+  bottom: -80px;
+  left: -40px;
+}
+
+/* Content */
+.join-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.join-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
+}
+
+.join-description {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.join-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.join-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Fine print */
+.join-note {
+  font-size: 0.82rem;
+  color: rgba(160, 174, 192, 0.55);
+  font-style: italic;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .join-card {
+    padding: 3rem 1.5rem;
+  }
+
+  .join-actions {
+    flex-direction: column;
+  }
+}
