@@ -2,35 +2,60 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Hero.css";
 
 const Hero: React.FC = () => {
-  const [isUnmuted, setIsUnmuted] = useState(false);
+  const [isUnmuted, setIsUnmuted] = useState(true);
+  const isUnmutedRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Create the audio instance with local file
-    audioRef.current = new Audio("/waterfall.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.4;
+    // Create the audio instance with the new local file
+    const audio = new Audio("/rmultimediaeu-birds-and-waterfall-250309.mp3");
+    audio.loop = true;
+    audio.volume = 0.4;
+    audioRef.current = audio;
+
+    // Try playing immediately (might be blocked by browser autoplay policy)
+    const playAudio = () => {
+      audio.play().catch((err) => {
+        console.log("Autoplay prevented by browser, waiting for user interaction.", err);
+      });
+    };
+
+    playAudio();
+
+    // Play as soon as user interacts with the page (if still unmuted)
+    const startOnInteraction = () => {
+      if (audio.paused && isUnmutedRef.current) {
+        playAudio();
+      }
+      window.removeEventListener("click", startOnInteraction);
+      window.removeEventListener("scroll", startOnInteraction);
+    };
+
+    window.addEventListener("click", startOnInteraction);
+    window.addEventListener("scroll", startOnInteraction);
 
     // Cleanup on unmount
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      audio.pause();
+      audioRef.current = null;
+      window.removeEventListener("click", startOnInteraction);
+      window.removeEventListener("scroll", startOnInteraction);
     };
   }, []);
 
   const toggleSound = () => {
     if (!audioRef.current) return;
+    const nextState = !isUnmuted;
+    setIsUnmuted(nextState);
+    isUnmutedRef.current = nextState;
 
-    if (isUnmuted) {
-      audioRef.current.pause();
-    } else {
+    if (nextState) {
       audioRef.current.play().catch((err) => {
         console.error("Audio playback failed:", err);
       });
+    } else {
+      audioRef.current.pause();
     }
-    setIsUnmuted(!isUnmuted);
   };
 
   return (
