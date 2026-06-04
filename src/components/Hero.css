@@ -59,13 +59,13 @@
   justify-content: center;
 
   width: 1.3em;
-  height: 0.72em;
+  height: 0.74em;
 
   background-color: var(--color-navy);
   border-radius: clamp(4px, 1vw, 8px);
 
   vertical-align: middle;
-  transform: translateY(-0.05em);
+  transform: translateY(-0.06em);
   margin: 0 15px;
 
   position: relative;
