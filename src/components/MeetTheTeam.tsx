@@ -141,7 +141,7 @@ const MeetTheTeam: React.FC = () => {
 
   useEffect(() => {
     if (isHovered) return;
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
   }, [isHovered, nextSlide]);
 
